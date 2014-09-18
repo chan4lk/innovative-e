@@ -1,0 +1,151 @@
+package com.iepl.pathapp;
+
+import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.MenuDrawer.OnDrawerStateChangeListener;
+import net.simonvt.menudrawer.Position;
+import net.simonvt.menudrawer.MenuDrawer.Type;
+
+import org.androidannotations.annotations.EActivity;
+
+import com.iepl.pathapp.fragment.ListViewFragment;
+import com.iepl.pathapp.fragment.MenuFragment;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
+@EActivity
+public class SlideUpActivity extends Activity
+{
+	private static final String TAG = "SlideUpActivity";
+	private SlidingUpPanelLayout mLayout;
+	private MenuDrawer mDrawer;
+	private ListView mDrawerList;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {		
+		super.onCreate(savedInstanceState);	
+
+		mDrawer = MenuDrawer.attach(this, Type.OVERLAY, Position.LEFT, MenuDrawer.MENU_DRAG_WINDOW);
+		mDrawer.setContentView(R.layout.slideup_layout);
+		mDrawer.setMenuView(R.layout.left_menu);
+		mDrawer.setOnDrawerStateChangeListener(new OnDrawerStateChangeListener(){
+
+			@Override
+			public void onDrawerStateChange(int oldState, int newState) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onDrawerSlide(float openRatio, int offsetPixels) {
+				mLayout.collapsePanel();
+				
+			}});
+		
+		setLeftMenuItems();
+		
+		mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+		mLayout.setAnchorPoint(.5f);
+		mLayout.setOverlayed(true);
+		mLayout.setPanelSlideListener(new PanelSlideListener() {
+            @Override
+            public void onPanelSlide(View panel, float slideOffset) {
+                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
+                if (slideOffset < 0.2) {
+                    if (getActionBar().isShowing()) {
+                        getActionBar().hide();
+                    }
+                } else {
+                    if (!getActionBar().isShowing()) {
+                        getActionBar().show();
+                    }
+                }
+            }
+
+            @Override
+            public void onPanelExpanded(View panel) {
+                Log.i(TAG, "onPanelExpanded");
+
+            }
+
+            @Override
+            public void onPanelCollapsed(View panel) {
+                Log.i(TAG, "onPanelCollapsed");
+
+            }
+
+            @Override
+            public void onPanelAnchored(View panel) {
+                Log.i(TAG, "onPanelAnchored");
+
+            }
+
+			@Override
+			public void onPanelHidden(View panel) {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+		
+		
+	}
+	
+	protected void setLeftMenuItems() {	
+		mDrawerList = (ListView) findViewById(R.id.drawer_list);
+	
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+
+		// Setting the adapter on mDrawerList
+		mDrawerList.setAdapter(adapter);	
+		
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long id) {
+				mDrawer.closeMenu();
+				if (pos == 1) {					
+					ChangeView(new ListViewFragment());
+					setBottomPanelItems();
+				}
+				else {
+					ChangeView(new MenuFragment());					
+				}
+			}});			
+	}
+	
+	protected void setBottomPanelItems() {
+		ListView sampleList;
+		sampleList = (ListView) findViewById(R.id.sample_list);
+	
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+
+		// Setting the adapter on mDrawerList
+		sampleList.setAdapter(adapter);	
+		
+		sampleList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long id) {
+				mDrawer.closeMenu();		
+			}});			
+	}
+	
+	protected void ChangeView(Fragment fragment) {
+		FragmentManager fragmentManager = getFragmentManager();
+		fragmentManager.beginTransaction().replace(R.id.content_panel, fragment).commit();
+	}
+}

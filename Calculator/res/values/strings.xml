@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Calculator</string>
+    <string name="action_settings">Settings</string>
+	<string name="total_label">Total</string>
+	<string name="undefined_label">Undefined</string>
+	<string name="divide_by_zero_message">Cannot divide by zero!</string>
+</resources>

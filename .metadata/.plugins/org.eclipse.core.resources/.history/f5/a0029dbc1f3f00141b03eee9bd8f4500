@@ -1,0 +1,45 @@
+import java.util.LinkedList;
+
+
+public class TestApp {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		TestApp app = new TestApp();
+		LinkedList<DownloadInfo> infoList = new LinkedList<DownloadInfo>();
+		infoList.add(new DownloadInfo("http://google.com", "C://data"));
+
+	}
+	
+	
+
+}
+
+class DownloadInfo{
+	private String downloadFromUrl;
+	private String downlodToUrl;
+	
+	public DownloadInfo(String urlFrom, String urlTo)
+	{
+		this.downloadFromUrl = urlFrom;
+		this.downlodToUrl = urlTo;
+	}
+
+	/**
+	 * @return the downloadFromUrl
+	 */
+	public String getDownloadFromUrl() {
+		return downloadFromUrl;
+	}
+
+	/**
+	 * @return the downlodToUrl
+	 */
+	public String getDownlodToUrl() {
+		return downlodToUrl;
+	}
+	
+	
+}

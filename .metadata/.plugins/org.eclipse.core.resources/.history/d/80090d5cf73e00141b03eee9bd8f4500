@@ -1,0 +1,22 @@
+package com.iepl.pathapp;
+
+import org.androidannotations.annotations.EActivity;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+@EActivity
+public class SlideUpActivity extends Activity
+{
+	private SlidingUpPanelLayout mLayout;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.slideup_layout);
+		mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+		mLayout.setAnchorPoint(.5f);
+	}
+}

@@ -1,0 +1,57 @@
+package com.iepl.pathapp;
+
+import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.Position;
+import net.simonvt.menudrawer.MenuDrawer.Type;
+
+import org.androidannotations.annotations.EActivity;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
+@EActivity
+public class SlideUpActivity extends Activity
+{
+	private SlidingUpPanelLayout mLayout;
+	private MenuDrawer mDrawer;
+	private ListView mDrawerList;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {		
+		super.onCreate(savedInstanceState);	
+
+		mDrawer = MenuDrawer.attach(this, Type.OVERLAY, Position.LEFT, MenuDrawer.MENU_DRAG_WINDOW);
+		mDrawer.setContentView(R.layout.slideup_layout);
+		mDrawer.setMenuView(R.layout.left_menu);
+		setLeftMenuItems();
+		
+		mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+		mLayout.setAnchorPoint(.5f);
+		
+		
+	}
+	
+	protected void setLeftMenuItems() {	
+		mDrawerList = (ListView) findViewById(R.id.drawer_list);
+	
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+
+		// Setting the adapter on mDrawerList
+		mDrawerList.setAdapter(adapter);	
+		
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long id) {
+				mDrawer.closeMenu();		
+			}});			
+	}
+}

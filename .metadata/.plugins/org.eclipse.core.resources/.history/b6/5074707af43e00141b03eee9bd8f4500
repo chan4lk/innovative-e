@@ -1,0 +1,11 @@
+package com.iepl.pathapp;
+
+import org.androidannotations.annotations.EActivity;
+
+import android.app.Activity;
+
+@EActivity(R.layout.slideup_layout)
+public class SlideUpActivity  extends Activity
+{
+	
+}

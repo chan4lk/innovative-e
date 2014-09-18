@@ -1,0 +1,50 @@
+package com.iepl.pathapp.fragment;
+
+import net.simonvt.menudrawer.MenuDrawer;
+
+import com.iepl.pathapp.R;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class ListViewFragment extends Fragment {
+	private MenuDrawer mDrawer;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.sample_list_view, container, false);
+		setBottomPanelItems(view);
+		return view;
+	}
+	
+	public void setMenuDrawer(MenuDrawer menuDrawer)
+	{
+		this.mDrawer = menuDrawer;
+	}
+	
+	protected void setBottomPanelItems(View view) {
+		ListView sampleList;
+		sampleList = (ListView) view.findViewById(R.id.sample_list);
+	
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), 
+				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+
+		// Setting the adapter on mDrawerList
+		sampleList.setAdapter(adapter);	
+		
+		sampleList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long id) {
+				mDrawer.closeMenu();		
+			}});			
+	}
+}

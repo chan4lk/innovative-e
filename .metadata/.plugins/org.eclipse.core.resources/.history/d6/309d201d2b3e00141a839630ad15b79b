@@ -1,0 +1,177 @@
+package com.iepl.pathapp;
+
+import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.MenuDrawer.Type;
+import net.simonvt.menudrawer.Position;
+
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.iepl.pathapp.fragment.MenuFragment;
+
+@EActivity
+public class DrawerActivity extends SherlockActivity {
+	// ListView represents Navigation Drawer
+	
+	protected ListView mDrawerList;	
+	protected GoogleMap map;
+	protected LatLng[] mapPositions = new LatLng[7];
+	protected Marker[] mapMarkers = new Marker[7];
+	protected MenuDrawer leftDrawer, bottomDrawer, rightDrawer;
+	private FragmentManager fragmentManager;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {		
+		super.onCreate(savedInstanceState);
+		getSupportActionBar();
+		
+		rightDrawer = MenuDrawer.attach(this, Type.OVERLAY, Position.RIGHT, MenuDrawer.MENU_DRAG_WINDOW);        
+		rightDrawer.setMenuView(R.layout.right_menu);
+		
+		bottomDrawer = MenuDrawer.attach(this, Type.BEHIND, Position.BOTTOM, MenuDrawer.MENU_DRAG_CONTENT); 	
+		bottomDrawer.setVerticalScrollBarEnabled(true);			
+		int height = getResources().getDisplayMetrics().heightPixels/4;		
+		bottomDrawer.setMenuSize(height);
+		bottomDrawer.setMenuView(R.layout.botton_menu );
+		
+		leftDrawer = MenuDrawer.attach(this, Type.OVERLAY, Position.LEFT, MenuDrawer.MENU_DRAG_WINDOW);
+		leftDrawer.setContentView(R.layout.container_layout);		
+		leftDrawer.setMenuView(R.layout.left_menu);
+		
+		this.setLeftMenuItems();
+		
+		leftDrawer.setSlideDrawable(R.drawable.ic_drawer);
+		leftDrawer.setDrawerIndicatorEnabled(true);   
+	    	     
+	     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+	            getActionBar().setDisplayHomeAsUpEnabled(true);
+	        }   
+	     this.initMap();        
+	}	
+	
+	protected void  initMap() {
+		map = ((MapFragment) getFragmentManager()
+	                .findFragmentById(R.id.map)).getMap();	        
+
+	    map.setMyLocationEnabled(true);
+	    
+	    
+		mapPositions[0] = new LatLng(-33.867, 151.206);
+		mapPositions[1] = new LatLng(-33.867, 161.206);
+		mapPositions[2] = new LatLng(-33.867, 171.206);
+		mapPositions[3] = new LatLng(-33.867, 151.206);
+		mapPositions[4] = new LatLng(-32.867, 151.206);
+		mapPositions[5] = new LatLng(-31.867, 151.206);
+		mapPositions[6] = new LatLng(-34.867, 151.206);
+		this.setMap(0);
+		
+	}
+	
+	protected void setMap(int position) {		 
+	        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mapPositions[position], 13));
+
+	        Marker mMarker = map.addMarker(new MarkerOptions()
+	                .title("location " + position)
+	                .snippet("The most populous city in Australia.")
+	                .position(mapPositions[position]));  
+	        mapMarkers[position] = mMarker;
+	        
+	        map.setOnMarkerClickListener(new OnMarkerClickListener() {
+				
+				@Override
+				public boolean onMarkerClick(Marker marker) {				
+					Log.d("marker", marker.getTitle());					
+					ChangeView(R.id.bottom_layout, new MenuFragment());					
+					return false;
+				}
+			});	       
+	}
+	
+	protected void setLeftMenuItems() {	
+		mDrawerList = (ListView) findViewById(R.id.drawer_list);
+		// Creating an ArrayAdapter to add items to the listview mDrawerList
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), 
+				R.layout.drawer_list_item, getResources().getStringArray(R.array.menus));
+
+		// Setting the adapter on mDrawerList
+		mDrawerList.setAdapter(adapter);	
+		
+		mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
+					long id) {
+				mDrawerListItemClicked(pos);				
+			}});			
+	}
+	
+	@ItemClick(R.id.drawer_list)
+	void mDrawerListItemClicked(int pos) {		
+	    Log.d("item clicked",String.format("%d",pos));
+	    this.setMap(pos);
+	    leftDrawer.closeMenu();
+	  }
+
+	protected void ChangeView(int containerId, Fragment fragment) {		
+		fragmentManager = getFragmentManager();
+
+		FragmentTransaction fragmentTransaction = fragmentManager
+				.beginTransaction();
+		
+		fragmentTransaction.replace(containerId,
+				fragment);
+		
+		fragmentTransaction.commit();
+	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                leftDrawer.toggleMenu();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+	
+	@Click(R.id.rClose_btn)
+	void rClose_btn()
+	{
+		rightDrawer.closeMenu();
+		Log.d("closbtn", "right Drawer closing");
+	}
+		
+	
+	@Click(R.id.bClose_btn)
+	void bClose_btn()
+	{
+		bottomDrawer.closeMenu(true);
+		Log.d("closbtn", "bottom Drawer closing");			
+	}	
+	 
+}

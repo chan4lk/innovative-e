@@ -1,0 +1,23 @@
+
+public class TestApp {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private class DownloadInfo{
+		private String downloadFromUrl;
+		private String downlodToUrl;
+		
+		public DownloadInfo(String urlFrom, String urlTo)
+		{
+			this.downloadFromUrl = urlFrom;
+			this.downlodToUrl = urlTo;
+		}
+	}
+
+}
