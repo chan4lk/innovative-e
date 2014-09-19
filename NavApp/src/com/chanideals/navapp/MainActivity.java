@@ -51,8 +51,9 @@ public class MainActivity extends Activity {
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, 
         		R.layout.drawer_list_item, mPlanetTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-    
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }    
+   
     
     
     @Override

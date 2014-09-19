@@ -1,0 +1,32 @@
+package com.iepl.pathadd.adapters;
+
+import java.util.ArrayList;
+
+import com.iepl.pathapp.R;
+
+import android.content.Context;
+import android.widget.ArrayAdapter;
+
+/**
+ * The Class CustomListAdapter.
+ */
+public class CustomListAdapter extends ArrayAdapter<RowItem> {
+	
+	//{{ private members
+	private final Context context;
+	private final ArrayList<RowItem> items;
+	//}} 
+	/**
+	 * Instantiates a new custom list adapter.
+	 *
+	 * @param context of the application
+	 * @param items in list
+	 */
+	public CustomListAdapter(Context context, ArrayList<RowItem> items)
+	{
+		super(context, R.layout.row_layout, items);
+		this.context = context;
+		this.items = items;		
+	}
+	
+}

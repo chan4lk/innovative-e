@@ -1,0 +1,48 @@
+package com.iepl.pathapp.fragment;
+
+import com.iepl.pathapp.R;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class SlideHeaderFragment extends Fragment{
+
+	private String name;
+	private String description;
+	private int rating;
+	
+	public SlideHeaderFragment()
+	{
+		
+	}
+	
+	public SlideHeaderFragment newInstance(Header header) {		
+		SlideHeaderFragment fragment = new SlideHeaderFragment();
+		Bundle args = new Bundle();
+		
+		this.name = header.getName();
+		this.description = header.getDescription();
+		this.rating  = header.getRating();
+		
+		args.putString("name", this.name);
+		args.putString("description", this.description);
+		args.putInt("rating", this.rating);
+		
+		
+		fragment.setArguments(args);
+		
+		return fragment;
+	}
+	
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.slide_panel_header, container, false);
+
+		return view;
+	}
+}

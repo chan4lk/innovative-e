@@ -1,0 +1,9 @@
+package com.iepl.pathadd.models;
+
+public class RowItem {
+
+	/**
+	 * @param args
+	 */
+	
+}

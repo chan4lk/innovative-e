@@ -1,0 +1,13 @@
+package com.iepl.pathadd.models;
+
+/**
+ * The Class RowItem.
+ */
+public class RowItem {
+	//{{private vars
+	
+	//}}
+	
+	
+	
+}

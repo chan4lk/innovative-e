@@ -666,6 +666,7 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010019;
     }
     public static final class color {
+        public static final int black=0x7f060018;
         public static final int common_action_bar_splitter=0x7f060009;
         /**  Sign-in Button Colors 
          */
@@ -678,8 +679,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f060006;
         public static final int common_signin_btn_light_text_focused=0x7f060007;
         public static final int common_signin_btn_light_text_pressed=0x7f060005;
-        public static final int common_signin_btn_text_dark=0x7f060018;
-        public static final int common_signin_btn_text_light=0x7f060019;
+        public static final int common_signin_btn_text_dark=0x7f06001b;
+        public static final int common_signin_btn_text_light=0x7f06001c;
+        public static final int light_sky_blue=0x7f060019;
         /**  The default background of the menu. 
          */
         public static final int md__defaultBackground=0x7f060017;
@@ -701,8 +703,9 @@ containing a value of this type.
         public static final int wallet_hint_foreground_holo_light=0x7f060011;
         public static final int wallet_holo_blue_light=0x7f060015;
         public static final int wallet_link_text_light=0x7f060016;
-        public static final int wallet_primary_text_holo_light=0x7f06001a;
-        public static final int wallet_secondary_text_holo_dark=0x7f06001b;
+        public static final int wallet_primary_text_holo_light=0x7f06001d;
+        public static final int wallet_secondary_text_holo_dark=0x7f06001e;
+        public static final int yellow=0x7f06001a;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -719,44 +722,46 @@ containing a value of this type.
     }
     public static final class drawable {
         public static final int above_shadow=0x7f020000;
-        public static final int apple_touch_icon=0x7f020001;
-        public static final int below_shadow=0x7f020002;
-        public static final int common_signin_btn_icon_dark=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020004;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020005;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020006;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020007;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020008;
-        public static final int common_signin_btn_icon_focus_light=0x7f020009;
-        public static final int common_signin_btn_icon_light=0x7f02000a;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02000b;
-        public static final int common_signin_btn_icon_normal_light=0x7f02000c;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000d;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000e;
-        public static final int common_signin_btn_text_dark=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_dark=0x7f020010;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020011;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020012;
-        public static final int common_signin_btn_text_disabled_light=0x7f020013;
-        public static final int common_signin_btn_text_focus_dark=0x7f020014;
-        public static final int common_signin_btn_text_focus_light=0x7f020015;
-        public static final int common_signin_btn_text_light=0x7f020016;
-        public static final int common_signin_btn_text_normal_dark=0x7f020017;
-        public static final int common_signin_btn_text_normal_light=0x7f020018;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020019;
-        public static final int common_signin_btn_text_pressed_light=0x7f02001a;
-        public static final int ic_drawer=0x7f02001b;
-        public static final int ic_launcher=0x7f02001c;
-        public static final int ic_plusone_medium_off_client=0x7f02001d;
-        public static final int ic_plusone_small_off_client=0x7f02001e;
-        public static final int ic_plusone_standard_off_client=0x7f02001f;
-        public static final int ic_plusone_tall_off_client=0x7f020020;
-        public static final int powered_by_google_dark=0x7f020021;
-        public static final int powered_by_google_light=0x7f020022;
-        public static final int shadow=0x7f020023;
+        public static final int action_search=0x7f020001;
+        public static final int apple_touch_icon=0x7f020002;
+        public static final int below_shadow=0x7f020003;
+        public static final int common_signin_btn_icon_dark=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020005;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020006;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020007;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020008;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020009;
+        public static final int common_signin_btn_icon_focus_light=0x7f02000a;
+        public static final int common_signin_btn_icon_light=0x7f02000b;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02000c;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000d;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000e;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000f;
+        public static final int common_signin_btn_text_dark=0x7f020010;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020011;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020012;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020013;
+        public static final int common_signin_btn_text_disabled_light=0x7f020014;
+        public static final int common_signin_btn_text_focus_dark=0x7f020015;
+        public static final int common_signin_btn_text_focus_light=0x7f020016;
+        public static final int common_signin_btn_text_light=0x7f020017;
+        public static final int common_signin_btn_text_normal_dark=0x7f020018;
+        public static final int common_signin_btn_text_normal_light=0x7f020019;
+        public static final int common_signin_btn_text_pressed_dark=0x7f02001a;
+        public static final int common_signin_btn_text_pressed_light=0x7f02001b;
+        public static final int ic_drawer=0x7f02001c;
+        public static final int ic_launcher=0x7f02001d;
+        public static final int ic_plusone_medium_off_client=0x7f02001e;
+        public static final int ic_plusone_small_off_client=0x7f02001f;
+        public static final int ic_plusone_standard_off_client=0x7f020020;
+        public static final int ic_plusone_tall_off_client=0x7f020021;
+        public static final int powered_by_google_dark=0x7f020022;
+        public static final int powered_by_google_light=0x7f020023;
+        public static final int shadow=0x7f020024;
     }
     public static final class id {
-        public static final int action_settings=0x7f04003f;
+        public static final int action_settings=0x7f040046;
+        public static final int action_websearch=0x7f040045;
         public static final int anchored=0x7f040002;
         public static final int bClose_btn=0x7f04002a;
         public static final int book_now=0x7f040014;
@@ -771,24 +776,28 @@ containing a value of this type.
         public static final int classic=0x7f040015;
         public static final int collapsed=0x7f040001;
         public static final int contentPanel=0x7f04002f;
-        public static final int content_panel=0x7f04003a;
-        public static final int content_panel_bottom=0x7f04003b;
-        public static final int dragView=0x7f040036;
-        public static final int drawer_list=0x7f040030;
+        public static final int content_panel=0x7f040035;
+        public static final int content_panel_bottom=0x7f040036;
+        public static final int dragView=0x7f040032;
+        public static final int drawer_layout=0x7f040030;
+        public static final int drawer_layout_list=0x7f040037;
+        public static final int drawer_list=0x7f040038;
         public static final int end=0x7f04001d;
         public static final int expanded=0x7f040000;
-        public static final int follow=0x7f040039;
         public static final int fullscreen=0x7f040027;
         public static final int grayscale=0x7f040016;
         public static final int hidden=0x7f040003;
         public static final int holo_dark=0x7f040009;
         public static final int holo_light=0x7f04000a;
         public static final int hybrid=0x7f040008;
-        public static final int imageView1=0x7f04003d;
+        public static final int imageView1=0x7f040043;
         public static final int left=0x7f040018;
+        public static final int location_description=0x7f040040;
+        public static final int location_name=0x7f04003f;
+        public static final int location_raiting=0x7f040041;
         public static final int map=0x7f04002e;
-        public static final int map_fragment=0x7f040037;
-        public static final int mapfr=0x7f040031;
+        public static final int map_fragment=0x7f040033;
+        public static final int mapfr=0x7f040039;
         public static final int margin=0x7f040026;
         public static final int match_parent=0x7f040010;
         /**  Used with View#setTag(int) to specify a position for the active view. 
@@ -812,24 +821,26 @@ containing a value of this type.
         public static final int md__translationX=0x7f040024;
         public static final int md__translationY=0x7f040025;
         public static final int monochrome=0x7f040017;
-        public static final int myText=0x7f040032;
-        public static final int name=0x7f040038;
+        public static final int myText=0x7f04003a;
         public static final int none=0x7f040004;
         public static final int normal=0x7f040005;
         public static final int production=0x7f04000b;
-        public static final int rClose_btn=0x7f040033;
+        public static final int rClose_btn=0x7f04003b;
         public static final int right=0x7f04001a;
-        public static final int sample_list=0x7f040034;
+        public static final int row_label=0x7f04003c;
+        public static final int row_value=0x7f04003d;
+        public static final int sample_list=0x7f04003e;
         public static final int sandbox=0x7f04000c;
         public static final int satellite=0x7f040006;
         public static final int selected_view=0x7f040028;
         public static final int selectionDetails=0x7f04000f;
-        public static final int sliding_layout=0x7f040035;
-        public static final int slidingmenumain=0x7f04003c;
+        public static final int slide_header=0x7f040034;
+        public static final int sliding_layout=0x7f040031;
+        public static final int slidingmenumain=0x7f040042;
         public static final int start=0x7f04001c;
         public static final int strict_sandbox=0x7f04000d;
         public static final int terrain=0x7f040007;
-        public static final int textView1=0x7f04003e;
+        public static final int textView1=0x7f040044;
         public static final int top=0x7f040019;
         public static final int wrap_content=0x7f040011;
     }
@@ -841,22 +852,28 @@ containing a value of this type.
         public static final int activity_splash=0x7f030000;
         public static final int botton_menu=0x7f030001;
         public static final int container_layout=0x7f030002;
-        public static final int drawer_list_item=0x7f030003;
-        public static final int left_menu=0x7f030004;
-        public static final int map_layout=0x7f030005;
-        public static final int menu_fragment=0x7f030006;
-        public static final int right_menu=0x7f030007;
-        public static final int sample_list_view=0x7f030008;
-        public static final int slideup_layout=0x7f030009;
-        public static final int slidingmenumain=0x7f03000a;
-        public static final int splash_layout=0x7f03000b;
+        public static final int drawer_layout=0x7f030003;
+        public static final int drawer_list_item=0x7f030004;
+        public static final int left_menu=0x7f030005;
+        public static final int map_layout=0x7f030006;
+        public static final int menu_fragment=0x7f030007;
+        public static final int right_menu=0x7f030008;
+        public static final int row_layout=0x7f030009;
+        public static final int sample_list_view=0x7f03000a;
+        public static final int slide_panel_header=0x7f03000b;
+        public static final int slideup_layout=0x7f03000c;
+        public static final int slidingmenumain=0x7f03000d;
+        public static final int splash_layout=0x7f03000e;
     }
     public static final class menu {
-        public static final int splash=0x7f0b0000;
+        public static final int menu=0x7f0b0000;
+        public static final int splash=0x7f0b0001;
     }
     public static final class string {
         public static final int action_settings=0x7f07001d;
+        public static final int action_websearch=0x7f070022;
         public static final int app_name=0x7f07001c;
+        public static final int app_not_available=0x7f070023;
         public static final int close=0x7f07001f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -947,6 +964,8 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070018;
+        public static final int drawer_close=0x7f070021;
+        public static final int drawer_open=0x7f070020;
         public static final int hello_world=0x7f07001e;
         public static final int md__drawerClosedIndicatorDesc=0x7f07001b;
         public static final int md__drawerOpenIndicatorDesc=0x7f07001a;
@@ -996,6 +1015,7 @@ containing a value of this type.
         /**  Base theme for the menu drawer. 
          */
         public static final int Widget_MenuDrawer=0x7f050006;
+        public static final int locationRatingBar=0x7f050009;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

@@ -1,0 +1,5 @@
+package com.iepl.pathadd.adapters;
+
+public class CustomListAdapter {
+
+}

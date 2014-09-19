@@ -17,7 +17,7 @@ public class SplashActivity extends Activity {
 			
 			@Override
 			public void run() {
-				Intent intent = new Intent(SplashActivity.this, SlideUpActivity_.class);
+				Intent intent = new Intent(SplashActivity.this, MapActivity_.class);
 				startActivity(intent);
 				finish();
 			}

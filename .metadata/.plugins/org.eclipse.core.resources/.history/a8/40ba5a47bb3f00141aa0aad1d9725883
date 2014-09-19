@@ -1,0 +1,21 @@
+package com.iepl.pathadd.models;
+
+/**
+ * The Class RowItem.
+ */
+public class RowItem {
+	
+	//{{private members
+	
+	private String title;
+	private String description;
+	
+	//}}
+	
+	public RowItem(String title, String title)
+	{
+		
+	}
+	
+	
+}

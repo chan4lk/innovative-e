@@ -1,46 +1,46 @@
 package com.iepl.pathapp.fragment;
 
-import net.simonvt.menudrawer.MenuDrawer;
+import java.util.ArrayList;
 
+import com.iepl.pathadd.adapters.CustomListAdapter;
+import com.iepl.pathadd.adapters.RowItem;
 import com.iepl.pathapp.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
 public class ListViewFragment extends Fragment {
-	private MenuDrawer mDrawer;
+
+	private final String[] lables = new String[] { "Phone", "Phone", "Phone",
+	        "Phone", "OS", "OS", "OS", "OS",		        
+	        "OS", "OS" };
+	
+	private final String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",		        
+		        "Linux", "OS/2" };
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.sample_list_view, container, false);
 		setBottomPanelItems(view);
 		return view;
-	}
-	
-	public void setMenuDrawer(MenuDrawer menuDrawer)
-	{
-		this.mDrawer = menuDrawer;
-	}
-	
+	}	
+
 	protected void setBottomPanelItems(View view) {
-		ListView sampleList;
+		final ListView sampleList;
 		sampleList = (ListView) view.findViewById(R.id.sample_list);
 	
-		   final String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-			        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-			        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-			        "Linux", "OS/2" };
 		   
-		   ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-			        android.R.layout.simple_list_item_1, values);
+		   CustomListAdapter adapter = new CustomListAdapter(getActivity(),getData());
 		   
 	       sampleList.setAdapter(adapter);
 	       
@@ -49,10 +49,28 @@ public class ListViewFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int pos,
 					long id) {
-				mDrawer.closeMenu();	
+				
 				Toast.makeText(getActivity(), "Item clicked "+ values[pos], Toast.LENGTH_SHORT).show();
 				
 			}
 	       });
+	       
+	       sampleList.setOnTouchListener(new OnTouchListener() {
+
+	            @Override
+	            public boolean onTouch(View v, MotionEvent event) {
+	            	sampleList.requestDisallowInterceptTouchEvent(true);
+	                return false;
+	            }				
+
+	        });
+	}
+	
+	protected ArrayList<RowItem> getData() {
+		ArrayList<RowItem> items = new ArrayList<RowItem>();
+		for (int index = 0; index < values.length; index++) {
+			items.add(new RowItem(lables[index], values[index]));
+		}
+		return items;
 	}
 }

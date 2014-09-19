@@ -1,0 +1,37 @@
+package com.iepl.pathapp.fragment;
+
+import com.iepl.pathapp.R;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class SlideHeaderFragment extends Fragment{
+
+	private final String name;
+	private final String description;
+	private final int rating;
+	
+	public SlideHeaderFragment()
+	{
+		this(new Header("Sri Lanka", "Home Country", 5));
+	}
+	
+	public SlideHeaderFragment(Header header) {
+		
+		this.name = header.getName();
+		this.description = header.getDescription();
+		this.rating = header.getRating();
+	}
+
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.slide_panel_header, container, false);
+
+		return view;
+	}
+}
