@@ -9,8 +9,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import com.iepl.pathapp.event.BusProvider_;
+import org.androidannotations.api.SdkVersionHelper;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
@@ -30,6 +33,7 @@ public final class MapActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
+        bus = BusProvider_.getInstance_(this);
     }
 
     @Override
@@ -60,6 +64,14 @@ public final class MapActivity_
 
     public static MapActivity_.IntentBuilder_ intent(android.support.v4.app.Fragment supportFragment) {
         return new MapActivity_.IntentBuilder_(supportFragment);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (((SdkVersionHelper.getSdkInt()< 5)&&(keyCode == KeyEvent.KEYCODE_BACK))&&(event.getRepeatCount() == 0)) {
+            onBackPressed();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public static class IntentBuilder_ {

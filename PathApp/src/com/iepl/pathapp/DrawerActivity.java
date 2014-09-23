@@ -101,7 +101,7 @@ public class DrawerActivity extends SherlockActivity {
 				@Override
 				public boolean onMarkerClick(Marker marker) {				
 					Log.d("marker", marker.getTitle());					
-					ChangeView(R.id.bottom_layout, new MenuFragment());					
+					changeView(R.id.bottom_layout, new MenuFragment());					
 					return false;
 				}
 			});	       
@@ -132,7 +132,7 @@ public class DrawerActivity extends SherlockActivity {
 	    leftDrawer.closeMenu();
 	  }
 
-	protected void ChangeView(int containerId, Fragment fragment) {		
+	protected void changeView(int containerId, Fragment fragment) {		
 		fragmentManager = getFragmentManager();
 
 		FragmentTransaction fragmentTransaction = fragmentManager
@@ -150,13 +150,15 @@ public class DrawerActivity extends SherlockActivity {
             case android.R.id.home:
                 leftDrawer.toggleMenu();
                 break;
+            default:
+            	break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 	
 	@Click(R.id.rClose_btn)
-	void rClose_btn()
+	void onRightCloseButton()
 	{
 		rightDrawer.closeMenu();
 		Log.d("closbtn", "right Drawer closing");
@@ -164,7 +166,7 @@ public class DrawerActivity extends SherlockActivity {
 		
 	
 	@Click(R.id.bClose_btn)
-	void bClose_btn()
+	void onBottomCloseButton()
 	{
 		//bottomDrawer.closeMenu(true);
 		int height = getResources().getDisplayMetrics().heightPixels/2;		

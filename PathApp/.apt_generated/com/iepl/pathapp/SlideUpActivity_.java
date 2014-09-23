@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import com.iepl.pathapp.event.BusProvider_;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
@@ -30,6 +31,7 @@ public final class SlideUpActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
+        bus = BusProvider_.getInstance_(this);
     }
 
     @Override

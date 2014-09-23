@@ -2,9 +2,9 @@ package com.iepl.pathapp.fragment;
 
 import java.util.ArrayList;
 
-import com.iepl.pathadd.adapters.CustomListAdapter;
-import com.iepl.pathadd.adapters.RowItem;
 import com.iepl.pathapp.R;
+import com.iepl.pathapp.adapters.CustomListAdapter;
+import com.iepl.pathapp.adapters.RowItem;
 
 import android.app.Fragment;
 import android.os.Bundle;

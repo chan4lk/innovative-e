@@ -67,7 +67,12 @@
             android:label="@string/app_name" 
             android:name=".ActivityChooserActivity_">            
         </activity>
-            ActivityChooserActivity
+         <activity 
+            android:showOnLockScreen="false" 
+            android:label="@string/app_name" 
+            android:name=".LoginActivity_">            
+        </activity>
+           
         <meta-data
 		    android:name="com.google.android.gms.version"
 		    android:value="@integer/google_play_services_version" />

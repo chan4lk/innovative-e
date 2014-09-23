@@ -77,7 +77,7 @@ public final class DrawerActivity_
 
                     @Override
                     public void onClick(View view) {
-                        DrawerActivity_.this.rClose_btn();
+                        DrawerActivity_.this.onRightCloseButton();
                     }
 
                 }
@@ -92,7 +92,7 @@ public final class DrawerActivity_
 
                     @Override
                     public void onClick(View view) {
-                        DrawerActivity_.this.bClose_btn();
+                        DrawerActivity_.this.onBottomCloseButton();
                     }
 
                 }

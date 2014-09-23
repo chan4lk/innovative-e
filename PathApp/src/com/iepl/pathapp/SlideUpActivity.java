@@ -5,6 +5,7 @@ import net.simonvt.menudrawer.MenuDrawer.OnDrawerStateChangeListener;
 import net.simonvt.menudrawer.Position;
 import net.simonvt.menudrawer.MenuDrawer.Type;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -16,10 +17,12 @@ import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.iepl.pathapp.fragment.Header;
+import com.iepl.pathapp.event.BusProvider;
+import com.iepl.pathapp.event.LocationChangeEvent;
 import com.iepl.pathapp.fragment.ListViewFragment;
 import com.iepl.pathapp.fragment.MenuFragment;
 import com.iepl.pathapp.fragment.SlideHeaderFragment;
+import com.iepl.pathapp.model.Header;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
@@ -39,6 +42,10 @@ import android.widget.AdapterView.OnItemClickListener;
  */
 @EActivity
 public class SlideUpActivity extends SherlockActivity {
+	
+	@Bean
+	BusProvider bus;
+	
 	protected static final String TAG = "SlideUpActivity";
 	protected SlidingUpPanelLayout mLayout;
 	protected MenuDrawer mDrawer;
@@ -55,6 +62,7 @@ public class SlideUpActivity extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		bus.register(this);
 		// {{ mDrawer
 		mDrawer = MenuDrawer.attach(this, Type.OVERLAY, Position.LEFT,
 				MenuDrawer.MENU_DRAG_WINDOW);
@@ -121,7 +129,7 @@ public class SlideUpActivity extends SherlockActivity {
 		
 		Header header = new Header(mapMarkers[0].getTitle(), mapMarkers[0].getSnippet(), 2.5f);
 		SlideHeaderFragment fragment = SlideHeaderFragment.newInstance(header);
-		ChangeViewPanel(R.id.slide_header, fragment);
+		changeViewPanel(R.id.slide_header, fragment);
 		
 	}
 
@@ -134,7 +142,15 @@ public class SlideUpActivity extends SherlockActivity {
 				.snippet("The most populous city in Australia.")
 				.position(mapPositions[position]));
 		mapMarkers[position] = mMarker;
-
+		
+		
+		bus.post(
+				new LocationChangeEvent(
+						new Header(
+								mMarker.getTitle(),
+								mMarker.getSnippet(),
+								3.5f)));
+		
 		map.setOnMarkerClickListener(new OnMarkerClickListener() {
 
 			@Override
@@ -142,7 +158,7 @@ public class SlideUpActivity extends SherlockActivity {
 				Log.d("marker", marker.getTitle());
 				Header header = new Header(marker.getTitle(), marker.getSnippet(), 4.5f);
 				SlideHeaderFragment fragment = SlideHeaderFragment.newInstance(header);
-				ChangeViewPanel(R.id.slide_header, fragment);
+				changeViewPanel(R.id.slide_header, fragment);
 				return false;
 			}
 		});
@@ -163,7 +179,7 @@ public class SlideUpActivity extends SherlockActivity {
 	}
 
 
-	protected void ChangeViewPanel(int resource, Fragment fragment) {
+	protected void changeViewPanel(int resource, Fragment fragment) {
 		FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(resource, fragment).commit();
@@ -189,10 +205,10 @@ public class SlideUpActivity extends SherlockActivity {
 			if (pos == 1) {
 				Log.i(TAG, "Changing view to List");
 				ListViewFragment fragment = new ListViewFragment();				
-				ChangeViewPanel(R.id.content_panel,fragment);
-				ChangeViewPanel(R.id.content_panel_bottom,new MenuFragment());
+				changeViewPanel(R.id.content_panel,fragment);
+				changeViewPanel(R.id.content_panel_bottom,new MenuFragment());
 			} else {
-				ChangeViewPanel(R.id.content_panel,new MenuFragment());
+				changeViewPanel(R.id.content_panel,new MenuFragment());
 			}
 		}
 	}
@@ -210,7 +226,7 @@ public class SlideUpActivity extends SherlockActivity {
 		public void onPanelExpanded(View panel) {
 			Log.i(TAG, "onPanelExpanded");
 			map.getUiSettings().setScrollGesturesEnabled(true);
-			ChangeViewPanel(R.id.content_panel,fragment);
+			changeViewPanel(R.id.content_panel,fragment);
 
 		}
 
@@ -218,14 +234,14 @@ public class SlideUpActivity extends SherlockActivity {
 		public void onPanelCollapsed(View panel) {
 			map.getUiSettings().setScrollGesturesEnabled(true);
 			Log.i(TAG, "onPanelCollapsed");
-			ChangeViewPanel(R.id.content_panel,new MenuFragment());
+			changeViewPanel(R.id.content_panel,new MenuFragment());
 		}
 
 		@Override
 		public void onPanelAnchored(View panel) {
 			map.getUiSettings().setScrollGesturesEnabled(true);
 			Log.i(TAG, "onPanelAnchored");
-			ChangeViewPanel(R.id.content_panel,fragment);
+			changeViewPanel(R.id.content_panel,fragment);
 
 		}
 
@@ -234,5 +250,12 @@ public class SlideUpActivity extends SherlockActivity {
 			Log.i(TAG, "onPanelHidden");
 
 		}
+	}
+	
+	
+	@Override
+	protected void onDestroy() {		
+		super.onDestroy();
+		bus.unregister(this);
 	}
 }
