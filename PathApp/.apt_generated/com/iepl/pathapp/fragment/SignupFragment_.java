@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import com.iepl.pathapp.R.layout;
+import com.iepl.pathapp.common.SessionManager_;
+import com.iepl.pathapp.event.BusProvider_;
 import org.androidannotations.api.view.HasViews;
 import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
@@ -50,6 +52,8 @@ public final class SignupFragment_
 
     private void init_(Bundle savedInstanceState) {
         OnViewChangedNotifier.registerOnViewChangedListener(this);
+        bus = BusProvider_.getInstance_(getActivity());
+        session = SessionManager_.getInstance_(getActivity());
     }
 
     @Override
@@ -65,6 +69,7 @@ public final class SignupFragment_
     @Override
     public void onViewChanged(HasViews hasViews) {
         usernameText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.username_signup));
+        emailText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.email_signup));
         passwordText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.password_signup));
         {
             View view = hasViews.findViewById(com.iepl.pathapp.R.id.signup_btn);

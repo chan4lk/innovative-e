@@ -760,8 +760,8 @@ containing a value of this type.
         public static final int shadow=0x7f020024;
     }
     public static final class id {
-        public static final int action_settings=0x7f040056;
-        public static final int action_websearch=0x7f040055;
+        public static final int action_settings=0x7f040058;
+        public static final int action_websearch=0x7f040057;
         public static final int activity_list=0x7f040029;
         public static final int anchored=0x7f040010;
         public static final int bClose_btn=0x7f04002b;
@@ -771,13 +771,13 @@ containing a value of this type.
         public static final int btn1=0x7f04002c;
         public static final int btn2=0x7f04002d;
         public static final int btn3=0x7f04002e;
-        public static final int button1=0x7f040045;
+        public static final int button1=0x7f040046;
         public static final int buyButton=0x7f04001c;
         public static final int buy_now=0x7f040021;
         public static final int buy_with_google=0x7f040020;
         public static final int classic=0x7f040023;
         public static final int collapsed=0x7f04000f;
-        public static final int confirm_password_signup=0x7f04004d;
+        public static final int confirm_password_signup=0x7f04004f;
         public static final int contentPanel=0x7f040030;
         public static final int content_panel=0x7f040036;
         public static final int content_panel_bottom=0x7f040037;
@@ -788,6 +788,7 @@ containing a value of this type.
         public static final int dual_fragment=0x7f04003c;
         public static final int dual_layout=0x7f040039;
         public static final int dual_layout_list=0x7f04003d;
+        public static final int email_signup=0x7f04004d;
         public static final int end=0x7f040005;
         public static final int expanded=0x7f04000e;
         public static final int frag_btn_1=0x7f04003a;
@@ -798,15 +799,15 @@ containing a value of this type.
         public static final int holo_dark=0x7f040017;
         public static final int holo_light=0x7f040018;
         public static final int hybrid=0x7f040016;
-        public static final int imageView1=0x7f040053;
+        public static final int imageView1=0x7f040055;
         public static final int left=0x7f040000;
-        public static final int location_description=0x7f040050;
-        public static final int location_name=0x7f04004f;
-        public static final int location_raiting=0x7f040051;
-        public static final int login_container=0x7f04003f;
+        public static final int location_description=0x7f040052;
+        public static final int location_name=0x7f040051;
+        public static final int location_raiting=0x7f040053;
+        public static final int login_container=0x7f040040;
         public static final int map=0x7f04002f;
         public static final int map_fragment=0x7f040034;
-        public static final int mapfr=0x7f040040;
+        public static final int mapfr=0x7f040041;
         public static final int margin=0x7f040026;
         public static final int match_parent=0x7f04001e;
         /**  Used with View#setTag(int) to specify a position for the active view. 
@@ -830,34 +831,35 @@ containing a value of this type.
         public static final int md__translationX=0x7f04000c;
         public static final int md__translationY=0x7f04000d;
         public static final int monochrome=0x7f040025;
-        public static final int myText=0x7f040041;
+        public static final int myText=0x7f040042;
         public static final int none=0x7f040012;
         public static final int normal=0x7f040013;
-        public static final int password=0x7f040048;
-        public static final int password_signup=0x7f04004c;
+        public static final int password=0x7f040049;
+        public static final int password_signup=0x7f04004e;
         public static final int production=0x7f040019;
-        public static final int rClose_btn=0x7f040042;
+        public static final int rClose_btn=0x7f040043;
         public static final int right=0x7f040002;
-        public static final int row_label=0x7f040043;
-        public static final int row_value=0x7f040044;
-        public static final int sample_list=0x7f040046;
+        public static final int row_label=0x7f040044;
+        public static final int row_value=0x7f040045;
+        public static final int sample_list=0x7f040047;
         public static final int sandbox=0x7f04001a;
         public static final int satellite=0x7f040014;
         public static final int selected_view=0x7f040028;
         public static final int selectionDetails=0x7f04001d;
-        public static final int signin_btn=0x7f04004a;
-        public static final int signup_btn=0x7f04004e;
-        public static final int signup_now_btn=0x7f040049;
+        public static final int signin_btn=0x7f04004b;
+        public static final int signout_btn=0x7f04003f;
+        public static final int signup_btn=0x7f040050;
+        public static final int signup_now_btn=0x7f04004a;
         public static final int slide_header=0x7f040035;
         public static final int sliding_layout=0x7f040032;
-        public static final int slidingmenumain=0x7f040052;
+        public static final int slidingmenumain=0x7f040054;
         public static final int start=0x7f040004;
         public static final int strict_sandbox=0x7f04001b;
         public static final int terrain=0x7f040015;
-        public static final int textView1=0x7f040054;
+        public static final int textView1=0x7f040056;
         public static final int top=0x7f040001;
-        public static final int username=0x7f040047;
-        public static final int username_signup=0x7f04004b;
+        public static final int username=0x7f040048;
+        public static final int username_signup=0x7f04004c;
         public static final int wrap_content=0x7f04001f;
     }
     public static final class integer {
@@ -897,7 +899,7 @@ containing a value of this type.
         public static final int action_websearch=0x7f060022;
         public static final int app_name=0x7f06001c;
         public static final int app_not_available=0x7f060023;
-        public static final int cancel=0x7f06002c;
+        public static final int cancel=0x7f06002e;
         public static final int close=0x7f06001f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -991,14 +993,16 @@ containing a value of this type.
         public static final int confirm_password=0x7f060028;
         public static final int drawer_close=0x7f060021;
         public static final int drawer_open=0x7f060020;
+        public static final int email=0x7f06002c;
         public static final int frg_btn_text_1=0x7f060024;
         public static final int frg_btn_text_2=0x7f060025;
         public static final int hello_world=0x7f06001e;
         public static final int md__drawerClosedIndicatorDesc=0x7f060001;
         public static final int md__drawerOpenIndicatorDesc=0x7f060000;
-        public static final int ok=0x7f06002b;
+        public static final int ok=0x7f06002d;
         public static final int password=0x7f060027;
         public static final int sign_in=0x7f060029;
+        public static final int sign_out=0x7f06002b;
         public static final int sign_up=0x7f06002a;
         public static final int user_name=0x7f060026;
         /**  Text on a placeholder buy button when Google Play services is not

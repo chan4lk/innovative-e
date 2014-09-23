@@ -70,21 +70,6 @@ public final class DrawerActivity_
     @Override
     public void onViewChanged(HasViews hasViews) {
         {
-            View view = hasViews.findViewById(com.iepl.pathapp.R.id.rClose_btn);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        DrawerActivity_.this.onRightCloseButton();
-                    }
-
-                }
-                );
-            }
-        }
-        {
             View view = hasViews.findViewById(com.iepl.pathapp.R.id.bClose_btn);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
@@ -93,6 +78,21 @@ public final class DrawerActivity_
                     @Override
                     public void onClick(View view) {
                         DrawerActivity_.this.onBottomCloseButton();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(com.iepl.pathapp.R.id.rClose_btn);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        DrawerActivity_.this.onRightCloseButton();
                     }
 
                 }

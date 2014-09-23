@@ -11,14 +11,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import com.iepl.pathapp.R.id;
+import com.iepl.pathapp.common.SessionManager_;
+import com.iepl.pathapp.event.BusProvider_;
+import com.iepl.pathapp.event.SignUpEvent;
+import com.squareup.otto.Subscribe;
 import org.androidannotations.api.SdkVersionHelper;
 import org.androidannotations.api.view.HasViews;
+import org.androidannotations.api.view.OnViewChangedListener;
 import org.androidannotations.api.view.OnViewChangedNotifier;
 
 public final class LoginActivity_
     extends LoginActivity
-    implements HasViews
+    implements HasViews, OnViewChangedListener
 {
 
     private final OnViewChangedNotifier onViewChangedNotifier_ = new OnViewChangedNotifier();
@@ -32,6 +39,9 @@ public final class LoginActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
+        OnViewChangedNotifier.registerOnViewChangedListener(this);
+        bus = BusProvider_.getInstance_(this);
+        session = SessionManager_.getInstance_(this);
     }
 
     @Override
@@ -70,6 +80,31 @@ public final class LoginActivity_
             onBackPressed();
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onViewChanged(HasViews hasViews) {
+        {
+            View view = hasViews.findViewById(id.signout_btn);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        LoginActivity_.this.onSignOut();
+                    }
+
+                }
+                );
+            }
+        }
+    }
+
+    @Override
+    @Subscribe
+    public void onSignIn(final SignUpEvent event) {
+        LoginActivity_.super.onSignIn(event);
     }
 
     public static class IntentBuilder_ {

@@ -16,6 +16,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="email">Email</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
 	 <string-array name="menus">

@@ -66,6 +66,7 @@
 		     android:layout_weight="1"
 		    android:layout_marginRight="15dp"
 		    android:text="@string/sign_up"
+		    style="?android:attr/buttonBarButtonStyle"
 		    android:textColor="#ff0000ff" />
 		<Button
 		    android:id="@+id/signin_btn"
@@ -74,6 +75,7 @@
 		     android:layout_weight="1"		    
 		    android:layout_marginRight="15dp"
 		    android:text="@string/sign_in"
+		    style="?android:attr/buttonBarButtonStyle"
 		    android:textColor="#ff0000ff" />
 
 		

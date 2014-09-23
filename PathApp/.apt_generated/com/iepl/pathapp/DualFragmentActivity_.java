@@ -80,23 +80,8 @@ public final class DualFragmentActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        navigationList = ((ListView) hasViews.findViewById(id.dual_layout_list));
         mDrawer = ((DrawerLayout) hasViews.findViewById(id.dual_layout));
-        {
-            View view = hasViews.findViewById(id.frag_btn_2);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        DualFragmentActivity_.this.onFragSecondButton();
-                    }
-
-                }
-                );
-            }
-        }
+        navigationList = ((ListView) hasViews.findViewById(id.dual_layout_list));
         {
             View view = hasViews.findViewById(id.frag_btn_1);
             if (view!= null) {
@@ -106,6 +91,21 @@ public final class DualFragmentActivity_
                     @Override
                     public void onClick(View view) {
                         DualFragmentActivity_.this.onFragFirstButton();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(id.frag_btn_2);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        DualFragmentActivity_.this.onFragSecondButton();
                     }
 
                 }
