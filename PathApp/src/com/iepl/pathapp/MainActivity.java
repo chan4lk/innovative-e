@@ -22,8 +22,7 @@ public class MainActivity extends Activity {
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.menu_fragment);
-        menu.setSecondaryMenu(R.layout.right_menu);
-        
+        menu.setSecondaryMenu(R.layout.right_menu);     
       
     }
 

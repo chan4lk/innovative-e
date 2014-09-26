@@ -69,21 +69,6 @@ public final class SigninFragment_
         password = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.password));
         username = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.username));
         {
-            View view = hasViews.findViewById(com.iepl.pathapp.R.id.signin_btn);
-            if (view!= null) {
-                view.setOnClickListener(new OnClickListener() {
-
-
-                    @Override
-                    public void onClick(View view) {
-                        SigninFragment_.this.onSignIn();
-                    }
-
-                }
-                );
-            }
-        }
-        {
             View view = hasViews.findViewById(com.iepl.pathapp.R.id.signup_now_btn);
             if (view!= null) {
                 view.setOnClickListener(new OnClickListener() {
@@ -92,6 +77,21 @@ public final class SigninFragment_
                     @Override
                     public void onClick(View view) {
                         SigninFragment_.this.signupNow();
+                    }
+
+                }
+                );
+            }
+        }
+        {
+            View view = hasViews.findViewById(com.iepl.pathapp.R.id.signin_btn);
+            if (view!= null) {
+                view.setOnClickListener(new OnClickListener() {
+
+
+                    @Override
+                    public void onClick(View view) {
+                        SigninFragment_.this.onSignIn();
                     }
 
                 }

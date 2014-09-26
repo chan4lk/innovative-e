@@ -33,7 +33,7 @@ public class SigninFragment extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
-		session =new SessionManager(getActivity());
+		session = new SessionManager(getActivity());
 	}
 	
 	/**
@@ -51,28 +51,40 @@ public class SigninFragment extends Fragment{
 	@Click(R.id.signin_btn)
 	protected void onSignIn()
 	{
-		AlertDialogManager alert = new AlertDialogManager();
+		AlertDialogManager alert = new AlertDialogManager();	
 		
-		String prefUserName =  session.getUserDetails().get(SessionManager.KEY_NAME);
-		String prefEmail =  session.getUserDetails().get(SessionManager.KEY_EMAIL);
-		String prefPassword =  session.getUserDetails().get(SessionManager.KEY_PASSWORD);
-		
-		if(username.getText().toString().trim().length()>0 && password.getText().toString().trim().length()>0){
+		if(!session.isSignedUp())
+		{
+			alert.showMessageDialog(getActivity(), "Error", "Please Signup", Boolean.FALSE);
+		}else if((username.getText().toString().trim().length()>0 && password.getText().toString().trim().length()>0)){
+			
+			String prefUserName =  session.getUserDetails().get(SessionManager.KEY_NAME);
+			String prefEmail =  session.getUserDetails().get(SessionManager.KEY_EMAIL);
+			String prefPassword =  session.getUserDetails().get(SessionManager.KEY_PASSWORD);
+			
 			if ((prefUserName.equalsIgnoreCase(username.getText().toString()) 
-					&& (prefPassword.equalsIgnoreCase(password.getText().toString()))
+					&& (prefPassword.equals(password.getText().toString()))
 					||
-					(((prefEmail.equalsIgnoreCase(username.getText().toString())) 
-					 && (prefPassword.equalsIgnoreCase(password.getText().toString())
-					 ))))) {
+			   (((prefEmail.equalsIgnoreCase(username.getText().toString())) 
+					 && (prefPassword.equals(password.getText().toString())
+				))))) {
 				session.createLoginSession(prefUserName, prefEmail, prefPassword);
 				Toast.makeText(getActivity(), username.getText().toString()+ " logged in", Toast.LENGTH_LONG).show();
-				alert.showMessageDialog(getActivity(), "Success", "User loged in", Boolean.TRUE);
+				
+				username.setText("");
+				password.setText("");
+				
+				getActivity().finish();
 			}
 			else
-			{
-				
+			{				
 				alert.showMessageDialog(getActivity(), "Error", "Username or Password is invalid", Boolean.FALSE);
-			}
+			}			
 		}
+		else
+		{
+			alert.showMessageDialog(getActivity(), "Error", "Username or Password is empty", Boolean.FALSE);
+		}
+		
 	}
 }

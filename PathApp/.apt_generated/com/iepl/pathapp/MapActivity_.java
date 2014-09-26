@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import com.iepl.pathapp.common.SessionManager_;
 import com.iepl.pathapp.event.BusProvider_;
 import org.androidannotations.api.SdkVersionHelper;
 import org.androidannotations.api.view.HasViews;
@@ -33,6 +34,7 @@ public final class MapActivity_
     }
 
     private void init_(Bundle savedInstanceState) {
+        session = SessionManager_.getInstance_(this);
         bus = BusProvider_.getInstance_(this);
     }
 

@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 @EActivity
 public class ActivityChooserActivity extends Activity {
-	protected String [] activities = {"MapActivity", "FragmentActivity", "LoginActivity"};
+	protected String [] activities = {"MapActivity", "FragmentActivity", "LoginActivity", "Test"};
 	
 	@ViewById(R.id.activity_list)
 	ListView list;
@@ -44,6 +44,9 @@ public class ActivityChooserActivity extends Activity {
 					break;
 				case 2:
 					intent = new Intent(getApplicationContext(), LoginActivity_.class);
+					break;
+				case 3:
+					intent = new Intent(getApplicationContext(), TestActivity.class);
 					break;
 
 				default:

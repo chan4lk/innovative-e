@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.iepl.pathapp.common.AlertDialogManager;
+import com.iepl.pathapp.common.SessionManager;
 import com.iepl.pathapp.event.BusProvider;
 import com.iepl.pathapp.event.LocationChangeEvent;
 import com.iepl.pathapp.fragment.ListViewFragment;
@@ -19,12 +21,14 @@ import com.iepl.pathapp.fragment.MenuFragment;
 import com.iepl.pathapp.fragment.SlideHeaderFragment;
 import com.iepl.pathapp.fragment.SlideHeaderFragment_;
 import com.iepl.pathapp.model.Header;
+import com.iepl.pathapp.service.AppService;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,8 +55,19 @@ public class MapActivity extends FragmentActivity  {
 	@Bean
 	BusProvider bus;
 	
+	@Bean
+	SessionManager session;
+	
 	/** The Constant TAG. */
 	protected static final String TAG = "SlideUpActivity";
+	
+	/** The Constant DEFULT_ANCHOR_POINT. */
+	protected static final float DEFULT_ANCHOR_POINT = 0.7f;
+	
+	/** The Constant DEFAULT_RATING. */
+	protected static final float DEFAULT_RATING = 2.5f;
+	
+	protected static final float DEFAULT_ZOOM = 13f;
 	
 	/** The title. */
 	protected String mTitle;
@@ -89,6 +104,8 @@ public class MapActivity extends FragmentActivity  {
 	
 	/** The metrics. */
 	protected DisplayMetrics metrics;
+	
+	protected  AlertDialogManager alertManager = new AlertDialogManager();
 
 	/*
 	 * (non-Java doc)
@@ -109,11 +126,13 @@ public class MapActivity extends FragmentActivity  {
 			getActionBar().setDisplayHomeAsUpEnabled(true);	       
 		}        
 		// }} mDrawer
-
+		
 		this.setupSlideUpPanel();
-		this.initMap();
-	}
-	
+		this.initMap();		
+		this.startService();
+		
+	}	
+
 	@Override
 	protected void onDestroy() {		
 		super.onDestroy();
@@ -135,13 +154,57 @@ public class MapActivity extends FragmentActivity  {
 	        getMenuInflater().inflate(R.menu.menu,  menu);
 	        return true;
 	    }
+	 
+	 /* 
+		 * Home button pressed action.
+		 */
+		@Override
+		public boolean onOptionsItemSelected(final MenuItem item) {
+			 
+			if (mDrawerToggle.onOptionsItemSelected(item)) {
+		          return true;
+		        }
+			 switch (item.getItemId()) {
+			    case R.id.action_signin:
+			    	startService();
+			    	if (session.isLoggedIn()) {
+			    		alertManager.showMessageDialog(this, "Success", "User is already signed in", Boolean.TRUE);
+					}else
+					{
+						session.checkLogin();
+					}
+			        return true;
+			    case R.id.action_signout:
+			    	if (session.isLoggedIn()) {
+			    		session.logoutUser();
+			    		alertManager.showMessageDialog(this, "Success", "User logged out", Boolean.TRUE);
+					}
+			    	else
+			    	{
+			    		alertManager.showMessageDialog(this, "Error", "User has already logged out", Boolean.FALSE);
+			    	}
+			        
+			        return true;
+			    default:
+			        return super.onOptionsItemSelected(item);
+			    }
+		}
+		
+	/**
+	 * Start service.
+	 */
+	protected void startService() {
+		Intent intent = new Intent(this, AppService.class);
+		intent.putExtra(TAG, "This is the init activity");
+		startService(intent);		
+	}	
 
 	/**
 	 * Setup slide up panel.
 	 */
 	protected void setupSlideUpPanel() {
 		mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-		mLayout.setAnchorPoint(.7f);
+		mLayout.setAnchorPoint(DEFULT_ANCHOR_POINT);
 		mLayout.setOverlayed(true);
 		mLayout.setPanelSlideListener(new SlidePanelActionListener());
 		mLayout.hidePanel();
@@ -169,7 +232,7 @@ public class MapActivity extends FragmentActivity  {
 		mapPositions[6] = new LatLng(-34.867, 151.206);
 		this.setMap(0);
 		
-		Header header = new Header(mapMarkers[0].getTitle(), mapMarkers[0].getSnippet(), 2.5f);
+		Header header = new Header(mapMarkers[0].getTitle(), mapMarkers[0].getSnippet(), DEFAULT_RATING);
 		SlideHeaderFragment fragment = SlideHeaderFragment_.newInstance(header);
 		changeViewPanel(R.id.slide_header, fragment);
 		
@@ -178,7 +241,7 @@ public class MapActivity extends FragmentActivity  {
 	protected void setMap(int position) {
 		currentSelectedItem = position;
 
-		Marker mMarker = map.addMarker(new MarkerOptions()
+		final Marker mMarker = map.addMarker(new MarkerOptions()
 				.title("location " + position)
 				.snippet("The most populous city in Australia.")
 				.position(mapPositions[position]));
@@ -196,8 +259,8 @@ public class MapActivity extends FragmentActivity  {
 			@Override
 			public boolean onMarkerClick(Marker marker) {
 				Log.d("marker", marker.getTitle());
-				Header header = new Header(marker.getTitle(), marker.getSnippet(), 4.5f);
-				SlideHeaderFragment fragment = SlideHeaderFragment_.newInstance(header);
+				final Header header = new Header(marker.getTitle(), marker.getSnippet(), 4.5f);
+				final SlideHeaderFragment fragment = SlideHeaderFragment_.newInstance(header);
 				changeViewPanel(R.id.slide_header, fragment);
 				mLayout.showPanel();
 				return false;
@@ -205,7 +268,7 @@ public class MapActivity extends FragmentActivity  {
 		});
 		snapView[0] = new CameraPosition.Builder()
 		   .target(mapPositions[position])
-		   .zoom(13)
+		   .zoom(DEFAULT_ZOOM)
 		   .bearing(0)
 		   .tilt(25)
 		   .build();
@@ -216,7 +279,7 @@ public class MapActivity extends FragmentActivity  {
 	protected void setLeftMenuItems() {
 		mDrawerList = (ListView) findViewById(R.id.drawer_layout_list);
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+		final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 				getBaseContext(), R.layout.drawer_list_item, getResources()
 						.getStringArray(R.array.menus));
 
@@ -257,21 +320,12 @@ public class MapActivity extends FragmentActivity  {
 	 * @param the fragment
 	 */
 	protected void changeViewPanel(final int resource, final Fragment fragment) {
-		FragmentManager fragmentManager = getFragmentManager();
+		final FragmentManager fragmentManager = getFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(resource, fragment).commit();
 	}	
 
-	/* 
-	 * Home button pressed action.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		if (mDrawerToggle.onOptionsItemSelected(item)) {
-	          return true;
-	        }
-		return super.onOptionsItemSelected(item);
-	}
+	
 
 	/**
 	 * The listener interface for receiving itemClick events.
@@ -322,6 +376,7 @@ public class MapActivity extends FragmentActivity  {
 
 		@Override
 		public void onPanelCollapsed(View panel) {
+			session.checkLogin();
 			map.getUiSettings().setScrollGesturesEnabled(true);
 			moveCamera(-(0),-(metrics.heightPixels/8));
 			Log.i(TAG, "onPanelCollapsed");
@@ -358,7 +413,7 @@ public class MapActivity extends FragmentActivity  {
 	{		
 		//LatLng center = map.getCameraPosition().target;
 		Point mappoint = map.getProjection().toScreenLocation(mapMarkers[currentSelectedItem].getPosition());
-        mappoint.set(mappoint.x +xOffset , mappoint.y + yOffset);
+        mappoint.set(mappoint.x + xOffset , mappoint.y + yOffset);
         map.animateCamera(CameraUpdateFactory.newLatLng(map.getProjection().fromScreenLocation(mappoint)));
 	}
 	

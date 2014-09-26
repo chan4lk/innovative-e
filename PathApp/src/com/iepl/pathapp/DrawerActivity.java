@@ -161,7 +161,7 @@ public class DrawerActivity extends SherlockActivity {
 	void onRightCloseButton()
 	{
 		rightDrawer.closeMenu();
-		Log.d("closbtn", "right Drawer closing");
+		Log.i("closbtn", "right Drawer closing");
 	}
 		
 	
@@ -171,7 +171,7 @@ public class DrawerActivity extends SherlockActivity {
 		//bottomDrawer.closeMenu(true);
 		int height = getResources().getDisplayMetrics().heightPixels/2;		
 		bottomDrawer.setMenuSize(height);
-		Log.d("closbtn", "bottom Drawer closing");			
+		Log.i("closbtn", "bottom Drawer closing");			
 	}	
 	 
 }

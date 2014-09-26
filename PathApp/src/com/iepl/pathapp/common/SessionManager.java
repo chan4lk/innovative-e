@@ -35,6 +35,8 @@ public class SessionManager {
 	/** The Constant IS_LOGIN. */
 	public static final String IS_LOGIN = "IsLoggedIn";
 	
+	public static final String IS_SIGNED_UP = "IsSignedIn";
+	
 	/** The Constant KEY_NAME. */
 	public static final String KEY_NAME = "username";
 	
@@ -65,6 +67,7 @@ public class SessionManager {
 			String email, String password)
 	{
 		editor.putBoolean(IS_LOGIN, true);
+		editor.putBoolean(IS_SIGNED_UP, true);		
 		editor.putString(KEY_NAME, name);
 		editor.putString(KEY_EMAIL, email);
 		editor.putString(KEY_PASSWORD, password);
@@ -107,12 +110,8 @@ public class SessionManager {
 	{
 		//editor.clear();
 		editor.putBoolean(IS_LOGIN, false);
-		editor.commit();
+		editor.commit();	
 		
-		Intent intent = new Intent(_context, LoginActivity_.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		_context.startActivity(intent);
 	}
 
 	/**
@@ -123,6 +122,11 @@ public class SessionManager {
 	public boolean isLoggedIn() {
 		boolean result = prefs.getBoolean(IS_LOGIN, false);
 		return result;
+	}
+	
+	public boolean isSignedUp()
+	{
+		return prefs.getBoolean(IS_SIGNED_UP, false);
 	}
 	
 	

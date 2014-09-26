@@ -52,8 +52,8 @@ public final class SignupFragment_
 
     private void init_(Bundle savedInstanceState) {
         OnViewChangedNotifier.registerOnViewChangedListener(this);
-        bus = BusProvider_.getInstance_(getActivity());
         session = SessionManager_.getInstance_(getActivity());
+        bus = BusProvider_.getInstance_(getActivity());
     }
 
     @Override
@@ -68,9 +68,9 @@ public final class SignupFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        usernameText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.username_signup));
         emailText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.email_signup));
         passwordText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.password_signup));
+        usernameText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.username_signup));
         {
             View view = hasViews.findViewById(com.iepl.pathapp.R.id.signup_btn);
             if (view!= null) {

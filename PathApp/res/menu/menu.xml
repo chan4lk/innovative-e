@@ -3,4 +3,14 @@
           android:icon="@drawable/action_search"
           android:title="@string/action_websearch"
           android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/action_signin"
+          android:icon="@drawable/action_signin"
+          android:title="@string/action_signin"
+          android:showAsAction="ifRoom|withText" />
+    
+    <item android:id="@+id/action_signout"
+          android:icon="@drawable/action_signout"
+          android:title="@string/action_signout"
+          android:showAsAction="ifRoom|withText" />
 </menu>

@@ -6,7 +6,7 @@ import org.androidannotations.annotations.EActivity;
 import com.iepl.pathapp.common.SessionManager;
 import com.iepl.pathapp.event.BusProvider;
 import com.iepl.pathapp.event.SignUpEvent;
-import com.iepl.pathapp.fragment.SigninFragment_;
+import com.iepl.pathapp.fragment.SigninFragment;
 import com.squareup.otto.Subscribe;
 
 import android.app.Fragment;
@@ -23,8 +23,7 @@ public class LoginActivity extends FragmentActivity {
 	
 	@Bean
 	SessionManager session;
-	
-		 
+			 
 	@Override
 	protected void onCreate(Bundle bundle) {		
 		super.onCreate(bundle);
@@ -33,7 +32,7 @@ public class LoginActivity extends FragmentActivity {
 		{
 			Toast.makeText(getApplicationContext(), "User is logged in", Toast.LENGTH_LONG).show();
 		}
-		changePanel(new SigninFragment_());
+		changePanel(new SigninFragment());
 	}
 	
 	protected void changePanel(Fragment fragment) {
@@ -68,7 +67,7 @@ public class LoginActivity extends FragmentActivity {
 	
 	@Subscribe 
 	public void onSignIn(SignUpEvent event){
-		changePanel(new SigninFragment_());
+		changePanel(new SigninFragment());
 	}
 	
 	@Click(R.id.signout_btn)

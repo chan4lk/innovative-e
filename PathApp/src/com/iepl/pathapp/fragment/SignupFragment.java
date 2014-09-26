@@ -32,15 +32,14 @@ public class SignupFragment extends Fragment {
 	@ViewById(R.id.email_signup)
 	EditText emailText;
 	
+	/** The session manager. */
 	@Bean
 	SessionManager session;
 	
+	/** The event bus. */
 	@Bean
 	BusProvider bus;
-	
-	
-	
-	
+		
 	/**
 	 * On sign up button pressed.
 	 */
