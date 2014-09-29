@@ -1,0 +1,47 @@
+# view res/layout/drawer_layout.xml #generated:1
+# view res/layout/dual_layout.xml #generated:2
+-keep class android.support.v4.widget.DrawerLayout { <init>(...); }
+
+# view res/layout/container_layout.xml #generated:5
+# view res/layout/drawer_layout.xml #generated:22
+# view res/layout/map_layout.xml #generated:2
+# view res/layout/slideup_layout.xml #generated:22
+-keep class com.google.android.gms.maps.MapFragment { <init>(...); }
+
+# view AndroidManifest.xml #generated:65
+-keep class com.iepl.pathapp.ActivityChooserActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:80
+-keep class com.iepl.pathapp.AppService { <init>(...); }
+
+# view AndroidManifest.xml #generated:39
+-keep class com.iepl.pathapp.DrawerActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:60
+-keep class com.iepl.pathapp.DualFragmentActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class com.iepl.pathapp.LoginActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:50
+-keep class com.iepl.pathapp.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class com.iepl.pathapp.MapActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:44
+-keep class com.iepl.pathapp.SlideUpActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:29
+-keep class com.iepl.pathapp.SplashActivity_ { <init>(...); }
+
+# view AndroidManifest.xml #generated:75
+-keep class com.iepl.pathapp.TestActivity { <init>(...); }
+
+# view res/layout/slidingmenumain.xml #generated:2
+-keep class com.jeremyfeinstein.slidingmenu.lib.SlidingMenu { <init>(...); }
+
+# view res/layout/drawer_layout.xml #generated:7
+# view res/layout/slideup_layout.xml #generated:7
+-keep class com.sothree.slidinguppanel.SlidingUpPanelLayout { <init>(...); }
+

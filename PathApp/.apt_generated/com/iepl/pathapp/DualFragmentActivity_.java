@@ -80,8 +80,8 @@ public final class DualFragmentActivity_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        mDrawer = ((DrawerLayout) hasViews.findViewById(id.dual_layout));
         navigationList = ((ListView) hasViews.findViewById(id.dual_layout_list));
+        mDrawer = ((DrawerLayout) hasViews.findViewById(id.dual_layout));
         {
             View view = hasViews.findViewById(id.frag_btn_1);
             if (view!= null) {

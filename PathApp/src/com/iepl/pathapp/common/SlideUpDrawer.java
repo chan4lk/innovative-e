@@ -1,5 +1,6 @@
 package com.iepl.pathapp.common;
 
+import com.iepl.pathapp.listener.OnDragListener;
 import com.iepl.pathapp.listener.OnSwipeTouchListener;
 import android.app.Activity;
 import android.graphics.Rect;
@@ -58,7 +59,7 @@ public class SlideUpDrawer {
         }       
         
         View handler = layout.getChildAt(0);
-        handler.setOnTouchListener(new OnSwipeTouchListener(context){
+        handler.setOnTouchListener(new OnDragListener(context){
         	ResizeAnimation anim = new ResizeAnimation(drawer);
         	@Override
         	public void onTap() {

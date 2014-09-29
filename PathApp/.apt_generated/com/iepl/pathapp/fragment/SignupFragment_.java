@@ -68,9 +68,9 @@ public final class SignupFragment_
 
     @Override
     public void onViewChanged(HasViews hasViews) {
-        emailText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.email_signup));
         passwordText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.password_signup));
         usernameText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.username_signup));
+        emailText = ((EditText) hasViews.findViewById(com.iepl.pathapp.R.id.email_signup));
         {
             View view = hasViews.findViewById(com.iepl.pathapp.R.id.signup_btn);
             if (view!= null) {
